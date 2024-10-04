@@ -1,6 +1,5 @@
 package com.pluralsight;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Book {
@@ -69,32 +68,6 @@ public class Book {
     }
 
     public static void main(String[] args) {
-//        Book boo1 = new Book(1, "978-0451524935", "To Kill a Mockingbird", true, "Alice Johnson");
-//        String s = new String("adfsgagsdsadfg");
-//        int i = 0;
-//        double d = 4.5;
-//        float f = 2.3f;
-//        short a = 1;
-//        char c = 'z';
-//        boolean isZEqualTo121 = 'z' == 121;
-//        boolean isALessThanZ = 'A' < 'Z';
-        //String s1 = "";
-//        int[] integerArray; // declaration
-//        double[] doubleArray = new double[10]; // instantiation
-//        doubleArray[5] = 17.5;
-//        doubleArray[0] = 8.8;
-//        ArrayList<Double> list = new ArrayList<>();
-//        list.add(5.5);
-//        list.add(10d);
-//        list.remove(5.5);
-        //int[] giveValuesWhenDeclared = new int[]{0, 1, 2};
-        //giveValuesWhenDeclared[3] = 100; //throws an ArrayIndexOutOfBoundsException
-//        Book[] books = new Book[3];
-//        books[0] = new Book();
-//        books[1] = new Book(0, "isbn", "The Odyssey", true, "someones name");
-//        books[2] = new Book();
-
-
         Book[] inventory = new Book[] {
                 new Book(1, "978-0451524935", "To Kill a Mockingbird", true, "Alice Johnson"),
                 new Book(2, "978-0451524936", "1984", false, "N/A"),
@@ -129,7 +102,7 @@ public class Book {
         };
 
 
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to the library!");
 
         printStoreHomeScreen(inventory);
@@ -159,9 +132,15 @@ public class Book {
         System.out.println("The following books are currently checked out: ");
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i].isCheckedOut()) {
-                System.out.printf("%s with Id: %d and ISBN #: %s checked out by %s",
+                System.out.printf("""
+                                \"%s\"  
+                                ------------------------
+                                Id: %d 
+                                ISBN #: %s
+                                This book is currently checked out by %s
+                                """,
                         inventory[i].title, inventory[i].id, inventory[i].isbn, inventory[i].getCheckedOutTo());
-                System.out.println();
+                System.out.println("\n");
             }
         }
         System.out.println("Press C to check in a book: ");
@@ -216,7 +195,12 @@ public class Book {
     private static void showAvailableBooks(Book[] inventory) {
         for (int i = 0; i < inventory.length; i++) {
             if (!inventory[i].isCheckedOut()) {
-                System.out.printf("%s with Id: %d and ISBN #: %s", inventory[i].title, inventory[i].id, inventory[i].isbn);
+                System.out.printf("""
+                        \"%s\" 
+                        ------------------------
+                        Id: %d
+                        ISBN #: %s
+                        """, inventory[i].title, inventory[i].id, inventory[i].isbn);
                 System.out.println();
             }
         }
